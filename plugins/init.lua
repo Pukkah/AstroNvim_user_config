@@ -1,5 +1,15 @@
+--- @type LazySpec
 return {
-  { "ThePrimeagen/vim-be-good", cmd = { "VimBeGood" } },
+  {
+    -- "sorsera/next-intl.nvim",
+    dir = "~/Desktop/next-intl.nvim",
+    cmd = { "AddToken" },
+    ft = { "typescriptreact" },
+    config = true,
+    opts = {
+      hover = true,
+    },
+  },
   {
     "luisiacc/gruvbox-baby",
     init = function()
@@ -9,27 +19,21 @@ return {
     end,
   },
   {
-    "nvim-notify",
-    opts = {
-      renderer = "compact",
-      stages = "slide",
-      -- background_colour = "#000000", -- fix for transparent mode
-    },
-  },
-  {
     "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
+      opts.defaults.dynamic_preview_title = true
       opts.defaults.borderchars = {
-        prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        preview = { "═", "│", "─", "│", "╒", "╕", "┘", "└" },
+        preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       }
     end,
   },
+  { "stevearc/aerial.nvim", opts = function(_, opts) opts.disable_max_size = 2000000 end },
   {
     "goolord/alpha-nvim",
-    opts = function(_, opts)      -- override the options using lazy.nvim
-      opts.section.header.val = { -- change the header section value
+    opts = function(_, opts)
+      opts.section.header.val = {
         "                          ░░▒▒            ",
         "                        ░░░░▒▒▒▒          ",
         "                      ░░░░░░▒▒▒▒▒▒        ",
@@ -48,7 +52,9 @@ return {
         "█░█ █▀ █▀▀ █▀█ █▀▄ █▀▀   █▀ █░█ █▀▀ █▄▀ █▀",
         "▀▄▀ ▄█ █▄▄ █▄█ █▄▀ ██▄   ▄█ █▄█ █▄▄ █░█ ▄█",
       }
-      opts.config.layout[3].val = 4
+      -- local button = require("astronvim.utils").alpha_button
+      -- table.insert(opts.section.buttons.val, 0, button("LDR p a", "  Remove VSCode  "))
+      -- opts.config.layout[3].val = 4
     end,
   },
   {
@@ -73,5 +79,9 @@ return {
       opts.mapping["<M-.>"] = opts.mapping["<C-Space>"]
       return opts
     end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    opts = function(_, opts) opts.float_opts.border = "single" end,
   },
 }

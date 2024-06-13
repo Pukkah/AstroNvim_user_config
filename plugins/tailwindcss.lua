@@ -17,16 +17,14 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "js-everts/cmp-tailwind-colors" },
-    },
+    dependencies = { { "js-everts/cmp-tailwind-colors" } },
     init = function()
       require("cmp-tailwind-colors").setup {
         enable_alpha = false, -- requires pumblend > 0.
         format = function(itemColor)
           return {
             fg = itemColor,
-            bg = nil,   -- or nil if you dont want a background color
+            bg = nil, -- or nil if you dont want a background color
             text = "󰝤", -- or use an icon
           }
         end,
@@ -47,7 +45,6 @@ return {
     "NvChad/nvim-colorizer.lua",
     opts = {
       user_default_options = {
-        mode = "background",
         names = false,
         tailwind = "lsp",
       },
